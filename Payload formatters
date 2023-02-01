@@ -1,0 +1,37 @@
+function decodeUplink(input) {
+  var alldata = {};
+  alldata.A_count = input.bytes[0];
+  alldata.B_year = input.bytes[1];
+  alldata.C_month = input.bytes[2];
+  alldata.D_day = input.bytes[3];
+  alldata.E_hour = input.bytes[4];
+  alldata.F_minute = input.bytes[5];
+  alldata.G_second = input.bytes[6];
+  
+  alldata.H_rg15MM1 = (input.bytes[7])/100;
+  alldata.H_rg15MM2 = (input.bytes[8])/100;
+  alldata.H_rg15MM3 = (input.bytes[9])/100;
+  alldata.H_rg15MM4 = (input.bytes[10])/100;
+  alldata.H_rg15MM5 = (input.bytes[11])/100;
+
+  alldata.I_tbrgTIP1 = input.bytes[12];
+  alldata.I_tbrgTIP2 = input.bytes[13];
+  alldata.I_tbrgTIP3 = input.bytes[14];
+  alldata.I_tbrgTIP4 = input.bytes[15];
+  alldata.I_tbrgTIP5 = input.bytes[16];
+  
+  alldata.J_tempC = input.bytes[17]-20;
+  alldata.K_batteryV = (input.bytes[18])/60+3;
+  alldata.L_solarPanelV = (input.bytes[19])/60+3;
+  alldata.M_sdflag = input.bytes[20];
+
+
+  return {
+    data: {
+      bytes: input.bytes,
+      alldata: alldata
+    },
+    warnings: [],
+    errors: []
+  };
+}
